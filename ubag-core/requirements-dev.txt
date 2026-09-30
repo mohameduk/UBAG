@@ -1,0 +1,12 @@
+# Test dependencies for ubag-core.
+#
+# pytest is not optional. tests/test_core.py imports it for the identity-coercion
+# assertions, and without it the suite dies partway through with a
+# ModuleNotFoundError after only a handful of tests have run, which silently
+# reports a green subset as a green suite.
+pytest>=8
+
+# The capability-grant tests exercise real Ed25519 signing. Core itself works
+# without this (verify_grant fails closed when it is absent), but the tests that
+# prove grants actually verify do need it.
+cryptography>=41

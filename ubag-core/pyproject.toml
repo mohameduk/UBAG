@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ubag-core"
+version = "0.9.1"
+description = "Deterministic behavioral gate for AI agent actions"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "PolyForm-Noncommercial-1.0.0" }
+authors = [{ name = "Dixit Algorizmi Inc." }]
+keywords = ["ai-agents", "security", "authorization", "gateway", "mcp", "guardrails"]
+dependencies = []
+
+[project.optional-dependencies]
+# Cryptographic capability grants (Ed25519). Core works without it; verify_grant
+# returns a fail-closed error if it's absent.
+capability = ["cryptography>=41"]
+# Required to run the full test suite. Without pytest, tests/test_core.py stops
+# partway with a ModuleNotFoundError and reports a green subset as a green suite.
+dev = ["pytest>=8", "cryptography>=41"]
+
+[project.urls]
+Homepage = "https://ubag.ai"
+Repository = "https://github.com/mohameduk/ubag"
+
+[tool.setuptools.packages.find]
+include = ["ubag_core*"]

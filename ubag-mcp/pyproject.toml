@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ubag-mcp"
+version = "0.5.0"
+description = "Credential-isolating MCP gateway with transactional commit around ubag-core"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "PolyForm-Noncommercial-1.0.0" }
+authors = [{ name = "Dixit Algorizmi Inc." }]
+keywords = ["ai-agents", "mcp", "security", "authorization", "gateway", "credential-isolation"]
+# ubag-mcp needs ubag-core, which lives next to it in this repository:
+#     pip install -e ubag-core -e ubag-mcp
+# It is deliberately NOT declared here. ubag-core is not on PyPI, so a bare
+# name would install whatever someone else later publishes under it, and a
+# git URL would make pip refetch the core instead of using the local copy.
+dependencies = []
+
+[project.optional-dependencies]
+mcp = ["mcp>=2,<3"]
+postgres = ["psycopg[binary]>=3.2"]
+pilot = ["mcp>=2,<3", "psycopg[binary]>=3.2"]
+
+[project.urls]
+Homepage = "https://ubag.ai"
+Repository = "https://github.com/mohameduk/ubag"
+
+[tool.setuptools.packages.find]
+include = ["ubag_mcp*"]

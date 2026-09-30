@@ -1,0 +1,19 @@
+# Runtime dependencies for the DEPLOYED console (see Dockerfile).
+#
+# Local development still needs none of this: `python server.py` runs on the
+# standard library so a prospect can start it anywhere. These are only what the
+# ASGI surface in asgi.py adds for a public endpoint.
+starlette>=0.37,<2
+uvicorn>=0.30,<1
+
+# The live demo module the console imports lazily brings the booking service.
+fastapi>=0.110,<1
+
+# Vertex credentials for the live agent. The demo holds no API key:
+# google.auth discovers the Cloud Run service account itself.
+#
+# `requests` is not optional here. google-auth's base install ships no HTTP
+# transport, and google.auth.transport.requests imports it, so leaving it out
+# fails at token refresh rather than at install.
+google-auth>=2.30,<3
+requests>=2.31,<3

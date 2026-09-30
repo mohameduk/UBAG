@@ -1,0 +1,15 @@
+# Optional: build the booking-service image on Google Cloud Build. Run from
+# the root of the ubag repository.
+#
+#   gcloud builds submit --config ubag-mcp/demo/live/cloudbuild.yaml #       --substitutions _IMAGE=gcr.io/$PROJECT/ubag-demo-gym:latest .
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --file
+      - ubag-mcp/demo/live/Dockerfile
+      - --tag
+      - ${_IMAGE}
+      - .
+images:
+  - ${_IMAGE}

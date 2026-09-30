@@ -1,0 +1,6 @@
+# Runtime dependencies for the deployed booking service only.
+#
+# The agent loop, the egress guard and the providers stay out of this image on
+# purpose: see the Dockerfile. Tests need nothing beyond pytest.
+fastapi>=0.110,<1
+uvicorn>=0.30,<1

@@ -1,0 +1,4 @@
+# The console runs on the standard library http.server on purpose, so a prospect
+# can start it anywhere. It resolves ubag-core, ubag-mcp and ubagweb from the
+# sibling checkouts, and needs nothing they do not already provide.
+-r ../ubag-core/requirements-dev.txt

@@ -1,0 +1,15 @@
+# Optional: build the console image on Google Cloud Build. Run from the root
+# of the ubag repository.
+#
+#   gcloud builds submit --config ubag-mcp/demo/console/cloudbuild.yaml #       --substitutions _IMAGE=gcr.io/$PROJECT/ubag-console:latest .
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --file
+      - ubag-mcp/demo/console/Dockerfile
+      - --tag
+      - ${_IMAGE}
+      - .
+images:
+  - ${_IMAGE}
